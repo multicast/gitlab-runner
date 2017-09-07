@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+set -e
+set -u
+set -x
+export DEBIAN_FRONTEND=noninteractive
+
+git config --global user.email "root@localhost"
+git config --global user.name "root"
+
+## packages sorted alphabeticaly
+##
+packages=""
+packages="${packages} curl"
+packages="${packages} wget"
+packages="${packages} apt-transport-https"
+packages="${packages} lsb-release"
+packages="${packages} gnupg"
+
+## install packages
+##
+apt-get install -y --no-install-recommends --auto-remove --purge ${packages}
+
+## install new sources, keys and packages
+##
+packages="https://packages.gitlab.com/runner/gitlab-ci-multi-runner/debian/"
+echo "deb $packages $(lsb_release -cs) main" > /etc/apt/sources.list.d/gitlab-runner.list
+wget -q -O - https://packages.gitlab.com/gpg.key | apt-key add -
+
+packages="https://download.docker.com/linux/debian/"
+echo "deb $packages $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
+wget -q -O - https://download.docker.com/linux/debian/gpg | apt-key add -
+
+apt-get update -y
+apt-get install -y gitlab-ci-multi-runner docker-ce
+
+wget -q https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-Linux-x86_64 \
+ -O /usr/bin/docker-machine
+chmod +x /usr/bin/docker-machine
+
+mkdir -p /etc/gitlab-runner/certs
+chmod -R 700 /etc/gitlab-runner
+
+## gitlab runner in sudo
+##
+echo 'gitlab-runner ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/gitlab-runner
+chmod 440 /etc/sudoers.d/gitlab-runner
+
+## runit file
+##
+mkdir -p /etc/service/gitlab-runner
+install -m 755 -o root -g root -p /root/build/etc/service/gitlab-runner/run /etc/service/gitlab-runner/run
