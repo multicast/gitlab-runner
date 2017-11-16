@@ -9,12 +9,12 @@ export DEBIAN_FRONTEND=noninteractive
 #install -m 644 -o root -g root -p /root/build/etc/apt/sources.list /etc/apt/sources.list
 
 http_proxy=${http_proxy:=}
-test -n "${http_proxy}" && {
+test -z "${http_proxy}" || {
   echo "Acquire::http::Proxy \"${http_proxy}\";" >> /etc/apt/apt.conf.d/proxy
 }
 
 https_proxy=${https_proxy:=}
-test -n "${https_proxy}" && {
+test -z "${https_proxy}" || {
   echo "Acquire::https::Proxy \"${https_proxy}\";" >> /etc/apt/apt.conf.d/proxy
 }
 
