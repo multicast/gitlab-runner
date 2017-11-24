@@ -13,4 +13,4 @@ build:
 	 .
 
 latest: build
-	docker tag $(NAME):$(VERSION) $(NAME):devel
+	docker tag $(NAME):$(VERSION) $(NAME):latest
