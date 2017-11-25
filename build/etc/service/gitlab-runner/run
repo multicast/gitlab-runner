@@ -49,7 +49,8 @@ test -S /run/docker.sock && {
 # create runner config
 #
 test -f ${GR_DATA}/config.toml && {
-  sudo -HEu ${GR_USER} gitlab-ci-multi-runner register --config ${GR_DATA}/config.toml
+  echo Existing config, if needed, run:
+  echo sudo -HEu ${GR_USER} gitlab-ci-multi-runner register --config ${GR_DATA}/config.toml
 } || {
   test -n ${SERVER_URL} \
     -a -n ${RUNNER_TOKEN} \
