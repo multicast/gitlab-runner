@@ -62,4 +62,5 @@ test -f ${GR_DATA}/config.toml && {
   }
 }
 
-exec sudo -HEu ${GR_USER} gitlab-ci-multi-runner run --config ${GR_DATA}/config.toml
+cd ${GR_HOME}
+exec sudo -HEu ${GR_USER} gitlab-ci-multi-runner --log-level info run --config ${GR_DATA}/config.toml
