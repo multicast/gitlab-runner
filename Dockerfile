@@ -15,7 +15,8 @@ COPY build /root/build
 RUN run-parts --report --exit-on-error /root/build/scripts && \
   rm -rfv /root/build /root/assets
 
-VOLUME ["/home/gitlab-runner/data"]
+# if you need to mount builds...
+VOLUME ["/home/gitlab-runner/data", "/home/gitlab-runner/builds" ]
 
 # from parent...
 #ENTRYPOINT ["/sbin/entrypoint.sh"]
