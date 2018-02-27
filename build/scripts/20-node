@@ -8,5 +8,5 @@ curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh -o 
 export NVM_DIR="${HOME}/.nvm"
 . $NVM_DIR/nvm.sh
 
-nvm install --lts
+nvm install --lts || true
 
