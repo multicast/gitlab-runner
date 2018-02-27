@@ -63,4 +63,5 @@ test -f ${GR_DATA}/config.toml && {
 }
 
 cd ${GR_HOME}
+chown -R ${GR_USER}: data builds
 exec sudo -HEu ${GR_USER} gitlab-ci-multi-runner --log-level info run --config ${GR_DATA}/config.toml
