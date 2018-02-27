@@ -11,4 +11,3 @@ projects in my own controlled environment.
 
 This runner supports running sister-docker containers and thus the docker
 executor, as well as shell executor. 
-
