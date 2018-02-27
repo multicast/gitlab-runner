@@ -13,6 +13,7 @@ packages=""
 packages="${packages} curl"
 packages="${packages} wget"
 packages="${packages} apt-transport-https"
+packages="${packages} jq"
 packages="${packages} lsb-release"
 packages="${packages} gnupg"
 
