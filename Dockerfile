@@ -1,7 +1,7 @@
 #
 # Dockerfile
 #
-FROM mkovac/base-debian:latest
+FROM mkovac/stretch:latest
 MAINTAINER Matej Kovac <matej.kovac@gmail.com>
 
 # assets - big, pre-downloaded files, not modified very often
