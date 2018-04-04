@@ -56,9 +56,12 @@ test -f ${GR_DATA}/config.toml && {
     -a -n ${RUNNER_TOKEN} \
     -a -n ${RUNNER_DESCRIPTION} \
     -a -n ${RUNNER_EXECUTOR} && {
+    img=""
+    test "x${RUNNER_EXECUTOR}" = "xdocker" &&
+      img="--docker-image mkovac/stretch"
     sudo -HEu ${GR_USER} gitlab-ci-multi-runner register \
       --config ${GR_DATA}/config.toml -n -u "${SERVER_URL}" -r "${RUNNER_TOKEN}" \
-      --name "${RUNNER_DESCRIPTION}" --executor "${RUNNER_EXECUTOR}"
+      --name "${RUNNER_DESCRIPTION}" --executor "${RUNNER_EXECUTOR}" "$img"
   }
 }
 
