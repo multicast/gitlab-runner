@@ -6,7 +6,8 @@ export DEBIAN_FRONTEND=noninteractive
 curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh -o - | bash
 
 export NVM_DIR="${HOME}/.nvm"
+
+set +x
 . $NVM_DIR/nvm.sh
 
 nvm install --lts || true
-
