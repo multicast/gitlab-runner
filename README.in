@@ -1,0 +1,19 @@
+# gitlab-runner
+
+![Pulls](https://img.shields.io/docker/pulls/mkovac/gitlab-runner.svg)
+![Stars](https://img.shields.io/docker/stars/mkovac/gitlab-runner.svg)
+
+The container image running
+`[gitlab-runner](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner)`
+based on [Debian Stretch](https://wiki.debian.org/DebianStretch)
+[image](https://hub.docker.com/r/mkovac/runit-stretch/).
+
+Main reason for basing it on top of Debian is that I need to test lot of
+applications using standard Debian packages and I can use it as a simple
+shared executor for many projects in my own controlled environment.
+
+This runner supports running sister-docker containers and thus the docker
+executor, as well as shell executor.
+
+# Packages
+

@@ -11,8 +11,6 @@ git config --global user.name "root"
 ##
 packages=""
 packages="${packages} apt-transport-https"
-packages="${packages} ca-certificates"
-packages="${packages} curl"
 packages="${packages} gnupg"
 packages="${packages} jq"
 packages="${packages} lsb-release"
